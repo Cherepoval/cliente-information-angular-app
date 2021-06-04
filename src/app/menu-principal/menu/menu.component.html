@@ -1,0 +1,79 @@
+<div *ngIf="isLoaded" id="main-menu">
+  <mat-toolbar id="toolBarPrincipal" class="fixed-top" style="background: #1f5371">
+    <div class="col-2 p-0 d-lg-none">
+      <button mat-button matSuffix mat-icon-button style="line-height: 0px;" (click)="snav.toggle()">
+        <i class="fas fa-bars text-white"></i>
+      </button>
+    </div>
+    <!-- ICONE INVENTORE MOBILE -->
+    <a [routerLink]="['/home']" class="col-7 pr-0 text-center d-lg-none" style="padding-left: 5px;"
+      routerLinkActive="active-opt" (click)="limparSessionStorage(); verificarSideNav()">
+      <img class="logo-simbolo click-pointer" src="assets/logogicnetonline.svg" alt="Logótipo gicnet" />
+    </a>
+    <!-- FIM ICONE INVENTORE MOBILE -->
+    <!-- ICONE INVENTORE DESKTOP -->
+    <a [routerLink]="['/home']" class="mx-2 h-100 d-none d-lg-block" routerLinkActive="active-opt"
+      (click)="limparSessionStorage()">
+      <img class="logo-simbolo click-pointer centrar-vertical" src="assets/logogicnetonline.svg"
+        alt="Logótipo gicnet" />
+    </a>
+    <!-- FIM ICONE INVENTORE DESKTOP -->
+    <!-- MENU DESKTOP -->
+    <a *ngFor="let itemMenu of itensMenu | slice: 0:4" [routerLink]="itemMenu.router"
+      class="mx-2 h-100 pt-2 d-none d-lg-block" routerLinkActive="active-opt"
+      (click)="limparSessionStorage(); botaoAtivo= false">
+      <div class="d-flex justify-content-center">
+        <i [class]="itemMenu.class"></i>
+        <span class="ml-1 mt-1">{{ itemMenu.texto | translate }}</span>
+      </div>
+    </a>
+    <a *ngIf="itensMenu.length >= 5" [routerLink]="itensMenu[indexItemSelecionado].router"
+      class="mx-2 h-100 pt-2 d-none d-lg-block" routerLinkActive="active-opt"
+      [ngClass]="{ 'active-opt': this.botaoAtivo }" (click)="onItemVariavel(indexItemSelecionado)">
+      <div class="d-flex justify-content-center">
+        <i [class]="itensMenu[indexItemSelecionado].class"></i>
+        <span class="ml-1 mt-1">{{ itensMenu[indexItemSelecionado].texto | translate }}</span>
+      </div>
+    </a>
+
+    <!-- Menu para more -->
+    <button *ngIf="itensMenu.length> 5" class="mx-2 d-none d-lg-block" mat-button matSuffix mat-icon-button
+      style="line-height: 0px;" [matMenuTriggerFor]="menuOutros">
+      <i class="fas fa-bars text-white pt-1"></i>
+    </button>
+    <!-- MENU DROPDOWN MORE -->
+    <mat-menu #menuOutros="matMenu" overlapTrigger="false" xPosition="before" class="bg-primary over-nav">
+      <ng-container *ngFor="let itemMenu of itensMenu; let i= index">
+        <button *ngIf="i >= 4 && i !== indexItemSelecionado" mat-menu-item class="text-white custom-hover-effect"
+          [routerLink]="itemMenu.router" (click)="onItemVariavel(i)">
+          <i [class]="itemMenu.class"></i>
+          <span class="ml-1">{{ itemMenu.texto | translate }}</span>
+        </button>
+      </ng-container>
+    </mat-menu>
+    <!-- FIM MENU DESKTOP -->
+  </mat-toolbar>
+  <app-loader class="fixed-top" [isModal]="false"></app-loader>
+
+  <mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav color="primary" #snav [mode]="'over'" [fixedInViewport]="true" fixedTopGap="56" [(opened)]="openedNav">
+      <nav>
+        <mat-nav-list class="mt-2" color="primary">
+          <a *ngFor="let itemMenu of itensMenu" mat-list-item [routerLink]="itemMenu.router"
+            (click)="onItemSelecionado()">
+            <div class="col-12 py-2 px-0">
+              <i class="col-2 {{ itemMenu.class }} ml-2 px-0 text-center"></i>
+              <span class="col mt-2 pl-2">{{ itemMenu.texto | translate }}</span>
+            </div>
+          </a>
+        </mat-nav-list>
+      </nav>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="mt-md-2 mt-xl-0" style="background-color: #3193ca">
+      <div style="margin-top: 75px">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

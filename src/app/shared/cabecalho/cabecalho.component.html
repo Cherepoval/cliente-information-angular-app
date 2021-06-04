@@ -1,0 +1,19 @@
+<div style="background: #185475;" class="rounded-top">
+  <div class="row text-white mx-0 p-2">
+    <div class="col-2 col-md pt-1">
+      <i *ngIf="backButton" class="fas fa-arrow-left mt-1 pl-2 float-left" (click)="onVoltar()"
+        style="cursor: pointer;"></i>
+    </div>
+    <div *ngIf="titulo.length === 1" class="col col-md-10 text-center py-1">
+      {{ titulo[0] | translate }}
+    </div>
+    <div *ngIf="titulo.length === 2" class="col col-md-10 text-center py-1">
+      {{ titulo[0] | translate }} - {{ traduzirTituloTodo? (titulo[1] | translate) : titulo[1] }}
+    </div>
+    <div class="col-2 col-md pt-1"></div>
+
+    <div *ngIf="subTitulo" class="col-12 py-2 text-center pb-1">
+      <span>{{ subTitulo | translate }}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+.custom-lable {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 0.7rem;
+}
+
+span.nobreak {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

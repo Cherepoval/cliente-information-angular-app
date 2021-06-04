@@ -1,0 +1,4 @@
+<div [ngClass]="{ 'modal-progress-bar': isModal }" style="height: 2px !important;">
+  <mat-progress-bar *ngIf="isLoading | async" class="mat-progress-bar-custom-color" mode="indeterminate">
+  </mat-progress-bar>
+</div>

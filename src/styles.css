@@ -1,0 +1,944 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+/* carrega a font localmente */
+@font-face {
+  font-family: 'Roboto';
+  src: url('assets/fonts/Roboto.ttf') format('truetype');
+  font-weight: 500;
+}
+
+/* constantes css custom global */
+
+:root {
+  --white: #fff;
+  --white-light: #e0ebeb;
+  --primary: #0c76ba;
+  --secondary: #0ba2ff;
+  --red: red;
+  --dark: #4d4d4d;
+  --font-normal-size: 16px;
+  --font-family-sans-serif: 'Roboto', sans-serif;
+}
+/* ----------------------------------- Inicio - CSS Geral ----------------------------------- */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-sans-serif) !important;
+  font-size: var(--font-normal-size);
+  background-color: #3193ca;
+  height: 100%;
+  overscroll-behavior: contain;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  margin: 0;
+}
+
+/* logotipo do menu-principal/ mobile */
+img.logo {
+  width: 100%;
+}
+
+img.logo-simbolo {
+  height: 33px;
+  vertical-align: middle;
+}
+
+img.logo-simbolo a {
+  padding: 0;
+}
+
+/*  usado na paginacao */
+button:disabled {
+  background: #ccc !important;
+  color: var(--white);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.font-size-16 {
+  font-size: var(--font-normal-size);
+}
+
+.font-size-75pc {
+  font-size: 75%;
+}
+
+.cinzento-escuro {
+  color: #757575;
+}
+
+.centrar-vertical {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ----------------------------------- Fim - CSS Geral ----------------------------------- */
+
+/* ------------------------------------------------- custom override para Material Design Angular --------------------------------------------------- */
+
+/* btn material com font-size 16px  */
+
+.mat-form-field-infix {
+  width: 100% !important;
+}
+
+.mat-focused .mat-form-field-underline .mat-form-field-ripple {
+  height: 1px !important;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: var(--primary) !important;
+}
+
+.mat-form-field-ripple,
+.mat-primary .mat-pseudo-checkbox-checked,
+.mat-primary .mat-pseudo-checkbox-indeterminate {
+  background-color: var(--primary) !important;
+}
+
+.mat-fab.mat-primary,
+.mat-flat-button.mat-primary,
+.mat-mini-fab.mat-primary,
+.mat-raised-button.mat-primary {
+  background-color: var(--primary);
+}
+
+.mat-stroked-button.mat-primary {
+  color: var(--primary);
+}
+
+.mat-stroked-button:not([disabled]) {
+  border-color: var(--primary);
+}
+
+.mat-button
+/* .mat-fab,
+.mat-flat-button,
+.mat-icon-button,
+.mat-mini-fab,
+.mat-raised-button,
+.mat-stroked-button */ {
+  font-size: var(--font-normal-size);
+}
+
+.mat-checkbox-checked.mat-primary .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-primary .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: var(--primary) !important;
+}
+
+.mat-radio-button.mat-primary .mat-radio-inner-circle,
+.mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-thumb {
+  background-color: var(--primary) !important;
+}
+
+.mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-bar {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: var(--primary);
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: var(--primary);
+}
+
+.mat-primary .mat-slider-thumb,
+.mat-primary .mat-slider-thumb-label,
+.mat-primary .mat-slider-track-fill {
+  background-color: var(--primary) !important;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: var(--primary) !important;
+}
+
+.mat-tab-label-active,
+.mat-tab-label:focus {
+  background-color: #fff !important;
+  color: #0c76ba !important;
+  opacity: 1 !important;
+}
+
+.mat-tab-label,
+.mat-tab-link {
+  font-size: var(--font-normal-size) !important;
+}
+
+.mat-tab-group.mat-background-primary .mat-tab-header,
+.mat-tab-group.mat-background-primary .mat-tab-links,
+.mat-tab-nav-bar.mat-background-primary .mat-tab-header,
+.mat-tab-nav-bar.mat-background-primary .mat-tab-links {
+  background-color: var(--primary) !important;
+}
+/* para não aparecer a setas de scroll horizontal em ecrã mais pequenos */
+.mat-tab-header {
+  z-index: 1;
+}
+
+.mat-chip.mat-chip-selected.mat-primary {
+  background-color: var(--primary) !important;
+  color: #fff !important;
+}
+
+.mat-focused .mat-form-field-label,
+.mat-icon.mat-primary {
+  color: var(--primary) !important;
+}
+
+.mat-input-element {
+  caret-color: var(--primary) !important;
+}
+
+.mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+  color: var(--primary) !important;
+}
+
+.mat-step-header .mat-step-icon {
+  background-color: var(--primary) !important;
+  color: var(--white) !important;
+}
+
+.mat-toolbar.mat-primary {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+}
+
+.mat-dialog-title {
+  text-align: center !important;
+  text-transform: uppercase !important;
+  border-bottom: 1px solid var(--primary) !important;
+  font-size: var(--font-normal-size) !important;
+  color: var(--primary) !important;
+  background-color: var(--white);
+}
+
+/* apenas para faturacao - modal itens */
+.customModal .mat-dialog-container {
+  padding: 0.5rem;
+}
+
+.customModal .mat-dialog-title {
+  margin: 0;
+}
+
+.customModal .mat-expansion-panel-body {
+  padding: 0 0.5rem;
+}
+/*  fim para faturacao modal itens */
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header,
+.mat-card-content {
+  font-size: var(--font-normal-size) !important;
+}
+
+.mat-expansion-panel-content {
+  font: 400 16px/20px Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.mat-icon-button:not([disabled]) {
+  margin-right: 0.5em !important;
+  color: var(--primary) !important;
+}
+.mat-icon-button {
+  margin-right: 0.5em !important;
+  color: var(--primary);
+}
+
+.mat-paginator-increment {
+  margin-left: 10px !important;
+}
+
+.mat-paginator-decrement {
+  margin-left: 8px !important;
+}
+/* para sub-menu dos settings */
+.custom-hover-effect.mat-button .mat-button-focus-overlay {
+  background-color: #3193ca;
+}
+
+.mat-drawer-container {
+  position: static !important;
+}
+
+.mat-drawer-inner-container {
+  background-color: var(--primary);
+}
+
+.mat-list-base .mat-list-item {
+  color: #ffffff;
+  height: 100% !important;
+}
+
+.mat-list-item-content {
+  width: 185px;
+  padding-right: 0px !important;
+}
+
+a.mobile.mat-tab-link {
+  text-align: left !important;
+  width: 100% !important;
+  justify-content: left !important;
+}
+
+.mat-selection-list .mat-list-item .mat-list-text,
+.mat-selection-list .mat-list-option .mat-list-text {
+  font-size: var(--font-normal-size);
+}
+/* datepicker angular */
+
+.mat-calendar-body-selected {
+  background-color: var(--primary) !important;
+  color: #fff !important;
+}
+
+.mat-calendar-period-button {
+  background-color: transparent !important;
+  color: #333 !important;
+}
+
+.mat-calendar-arrow {
+  border-top-color: var(--primary) !important;
+}
+
+.mat-calendar-body-label,
+.mat-calendar-body-today {
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+.mat-calendar-table-header {
+  color: var(--primary) !important;
+}
+
+.mat-tab-header-pagination-chevron {
+  border-color: var(--primary) !important;
+}
+
+.mat-calendar-body-today.mat-calendar-body-selected {
+  -webkit-box-shadow: inset 0 0 0 1px #fff !important;
+  box-shadow: inset 0 0 0 1px #fff;
+}
+
+.mat-calendar-body-today {
+  color: #fff !important;
+  background-color: #666 !important;
+}
+
+/* FIM datepicker angular */
+
+.mat-tab-header-pagination-disabled .mat-tab-header-pagination-chevron {
+  box-shadow: initial !important;
+  cursor: default !important;
+  border-color: #ccc !important;
+}
+
+.headerAccordionPacks .mat-expansion-indicator::after {
+  margin-top: -0.9em;
+}
+
+.mat-paginator-decrement,
+.mat-paginator-increment {
+  margin-left: 1em !important;
+}
+
+input.ng-dirty.ng-invalid,
+textarea.ng-dirty.ng-invalid {
+  color: var(--red) !important;
+}
+
+/* para atendimento / faturacao na lista de atendimento */
+.no-hover.mat-button .mat-button-focus-overlay {
+  background-color: transparent !important;
+}
+
+.mat-menu-item {
+  font-size: 16px;
+}
+
+/* esta class ou estilo nao existe em btn tipo mat-min-fab em material */
+.min-fab-stroked {
+  min-width: 0 !important;
+  border-radius: 40px !important;
+  width: 40px !important;
+  height: 40px !important;
+  padding: 0 !important;
+}
+
+/* --------------------------------------------------  Fim custom material design Angular  --------------------------------------------------*/
+
+/*-------------------------------------------------- custom backgrounds ----------------------------------------------------------------- */
+.background-vermelho {
+  background-color: #c50303;
+  color: #fff;
+}
+
+.background-verde {
+  background-color: #013d09;
+  color: #fff;
+}
+
+.background-laranja {
+  background-color: #ffcc00;
+  color: #000000;
+}
+
+/*-------------------------------------------------- Fim custom backgrounds ------------------------------------------------------------------- */
+
+/* ------------------------------------------ Inicio - Cores nas marcações da agenda (cor texto do chips) ------------------------------------------ */
+
+.branco span {
+  color: #fff !important;
+}
+
+.branco {
+  color: #fff !important;
+}
+
+.preto span {
+  color: #000 !important;
+}
+
+.preto {
+  color: #000 !important;
+}
+
+/* ------------------------------------------ Fim - Cores nas marcações da agenda ------------------------------------------ */
+
+/* --------------------------------------- Responsive ---------------------------------------------------------------------- */
+
+/* @media screen and (max-width: 570px) {
+  body,
+  label {
+    font-size: 12px !important;
+  }
+} */
+
+@media screen and (max-width: 449px) {
+  .col-md-9 .row.col-md-12.mt-3 {
+    margin-bottom: 10px;
+  }
+  .col-md-9.ng-star-inserted .mat-slide-toggle-label {
+    display: unset !important;
+  }
+}
+
+@media screen and (max-width: 449px) {
+  .circleContagem {
+    float: initial !important;
+  }
+}
+
+@media screen and (max-width: 445px) {
+  /* .icons {
+    font-size: 14px;
+  } */
+
+  .circleContagem {
+    float: initial !important;
+  }
+}
+
+@media screen and (max-width: 365px) {
+  .stopContagem {
+    font-size: 8.1px !important;
+    padding: 0 !important;
+    padding-top: 3px !important;
+  }
+  .circleContagem {
+    width: 22px;
+    height: 22px;
+    margin-left: -8px;
+  }
+}
+
+@media screen and (max-width: 327px) {
+  .circleContagem {
+    width: 22px;
+    height: 22px;
+    margin-left: -20px;
+  }
+}
+
+/* ------------------------------------- Inicio - border redonda com animação na contagem decrescente ------------------------------------- */
+
+.circleContagem {
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.circleContagem .borderContagem {
+  /* content: ''; */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  border-radius: 50%;
+  border: 2px dotted #ff7f7f;
+  animation-name: Rotate;
+  animation-timing-function: linear;
+  animation-duration: 12s;
+  animation-iteration-count: infinite;
+  -webkit-animation-name: Rotate;
+  -webkit-animation-duration: 12s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-name: Rotate;
+  -moz-animation-duration: 12s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -ms-animation-name: Rotate;
+  -ms-animation-duration: 12s;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
+}
+
+.play {
+  padding: 20px 30px;
+  font-size: 11px;
+}
+
+.stopContagem {
+  font-size: 10px;
+  padding: 3px;
+  padding-top: 3.2px;
+  text-align: center;
+  color: #ff7f7f;
+}
+
+@-webkit-keyframes Rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+/* ------------------------------------- Fim - border redonda com animação na contagem decrescente------------------------------------- */
+
+.list-group-item.active {
+  background-color: #0c76ba;
+  border-color: #0c76ba;
+}
+/* overide style de bootstrap */
+
+button:focus {
+  outline: 0;
+  text-decoration: none;
+}
+
+.form-group {
+  margin-bottom: 0;
+}
+
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+.bg-secondary {
+  background-color: var(--secondary) !important;
+}
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.text-decoration-none {
+  text-decoration: none !important;
+}
+
+/* Fim overide style de bootstrap */
+
+/* Btn usado em coloracao e outras fichas tecnicas */
+
+.btn-check-toggle {
+  margin-left: 0.5em;
+  background-color: #e6e6e6;
+  color: #fff;
+  border: 0;
+  padding: 0.7em;
+  font-weight: normal;
+  color: black;
+  cursor: pointer !important;
+  font-size: var(--font-normal-size);
+}
+
+.btn-check-toggle :focus {
+  text-decoration: none;
+}
+
+.btn-check-toggle-selected {
+  background-color: #0c76ba;
+  color: #fff;
+}
+
+/* Fim Btn usado em coloracao e outras fichas tecnicas */
+
+/* CLASSES COMUNS PARA CDK-TABLES */
+@media (max-width: 800px) {
+  .custom-responsive-table {
+    overflow-x: auto !important;
+  }
+
+  .cdk-table {
+    min-width: 800px;
+  }
+}
+
+/*
+* Styles to make the demo's cdk-table match the material design spec
+* https://material.io/guidelines/components/data-tables.html
+*/
+.custom-cdk-table {
+  flex: 1 1 auto;
+  overflow: auto;
+  max-height: 250px;
+}
+
+.custom-cdk-table-header-row,
+.custom-cdk-table-row {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  align-items: center;
+  height: 32px;
+  padding: 0 8px;
+}
+
+.custom-cdk-table-cell,
+.custom-cdk-table-header-cell {
+  flex: 1;
+}
+
+.custom-cdk-table-header-cell {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 0.7rem;
+}
+
+.custom-cdk-table-cell {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.custom-cdk-table-cell-active {
+  color: white;
+}
+
+.custom-cdk-table-row-hover:hover {
+  background-color: rgba(235, 235, 235, 1);
+  cursor: pointer;
+}
+
+.custom-cdk-table-row-highlight {
+  background: #0c76ba !important;
+}
+/* FIM CLASSES COMUNS PARA CDK-TABLES */
+
+/* Correções de margem em icone de tabelas cdk */
+.custom-clear-icone-cdk-table {
+  margin-top: 5px;
+  margin-right: 1px;
+}
+
+/* correcao para firefox na lista de ficha aparece a bold */
+.list-group-item {
+  font-weight: initial;
+}
+
+/* Sobreposição de css do angular-calendar */
+.cal-month-view .cal-cell-row:hover {
+  background-color: #fafafa;
+}
+
+.cal-month-view .cal-cell-row .cal-cell:hover,
+.cal-month-view .cal-cell.cal-has-events.cal-open {
+  background-color: #b5daf1aa;
+}
+
+.cal-week-view .cal-day-headers .cal-header:hover,
+.cal-week-view .cal-day-headers .cal-drag-over,
+.cal-week-view .cal-header.cal-today {
+  background-color: #b5daf1aa;
+}
+
+.cal-week-view
+  .cal-time-events
+  .cal-day-columns:not(.cal-resize-active)
+  .cal-hour-segment:hover,
+.cal-day-view .cal-hour-segment:hover {
+  background-color: #b5daf1aa;
+}
+
+.cal-day-view .cal-event-container.resize-active {
+  background-color: #b5daf1aa;
+}
+
+.cal-day-view .cal-drag-over .cal-hour-segment {
+  background-color: #b5daf1aa;
+  position: relative;
+  z-index: 0;
+}
+
+.cal-day-view .cal-hour:not(:last-child) .cal-hour-segment,
+.cal-day-view .cal-hour:last-child :not(:last-child) .cal-hour-segment {
+  position: relative;
+  z-index: 1;
+}
+
+.cal-event {
+  position: relative;
+  z-index: 2;
+}
+
+.cal-day-view .cal-event-container {
+  position: absolute;
+  z-index: 2;
+}
+
+.cal-month-view {
+  cursor: pointer;
+}
+
+.cal-week-view .cal-header {
+  cursor: pointer;
+}
+
+.cal-week-view
+  .cal-time-events
+  .cal-day-columns:not(.cal-resize-active)
+  .cal-hour-segment {
+  cursor: pointer;
+}
+
+.cal-day-view .cal-hour-segment {
+  cursor: pointer;
+}
+
+.cal-day-view .cal-hour-rows {
+  overflow-x: hidden;
+}
+
+.cal-day-view .cal-hour:nth-child(odd),
+.cal-week-view .cal-hour-odd {
+  background-color: #ffffff;
+}
+/* FIM Sobreposição de css do angular-calendar */
+
+/* Estilo de cursor do rato */
+
+.hover:hover {
+  /* background-color: #ccc !important; */
+  /* background-color: rgba(0, 0, 0, 0.075); */
+  background-color: rgba(235, 235, 235, 1);
+  cursor: pointer;
+}
+
+.hover-default:hover {
+  /* background-color: rgba(0, 0, 0, 0.075); */
+  background-color: rgba(235, 235, 235, 1);
+  cursor: default;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.icon-hover:hover {
+  opacity: 0.8;
+}
+
+.click-pointer {
+  cursor: pointer;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+.mat-menu-content:not(:empty) {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+/* Retira uma margem que o mat-checkbox tem por predefinição */
+.mat-checkbox-layout {
+  margin-bottom: 0.1rem !important;
+}
+
+.icon-size {
+  font-size: 1.3em;
+}
+
+.icon2ComCor {
+  font-size: 1.2rem;
+  color: #0c76ba;
+}
+
+/* custom btn close modal -> X */
+
+.btn-custom-modal-close {
+  cursor: pointer;
+}
+
+.btn-custom-modal-close:hover {
+  color: var(--primary) !important;
+}
+
+/* Círculo de contagem de itens no topo direito de um botão */
+button.dots mark {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  width: 20px;
+  height: 20px;
+  background-color: #ff6b6b;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 10px;
+  line-height: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #fff;
+  font-weight: 700;
+}
+
+button.user-lock i {
+  top: -10px;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 48%;
+  color: #999999;
+  font-size: 0.7rem;
+  right: -9px;
+}
+
+.btn.link {
+  color: #3193ca;
+}
+
+/*  textarea custom style clean */
+textarea {
+  overflow: hidden !important;
+  padding: 0px !important;
+  margin: 0px !important;
+  resize: none !important;
+}
+
+.mat-progress-bar {
+  height: 2px !important;
+}
+
+.mat-progress-bar-custom-color .mat-progress-bar-fill::after {
+  background-color: #ff8400 !important;
+}
+
+.mat-progress-bar-buffer {
+  background: #1f5371;
+}
+
+.modal-progress-bar .mat-progress-bar-buffer {
+  background-color: #ffffff !important;
+}
+
+.circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 12px;
+  line-height: 28px;
+  text-align: center;
+  border: 2px solid white;
+}
+
+.custom-min-height {
+  min-height: 60vh;
+}
+
+.custom-flex-toogle > label.mat-slide-toggle-label {
+  justify-content: space-between;
+}
+
+.custom-flex-checkbox > label {
+  display: flex;
+  justify-content: space-between;
+}
+.custom-flex-checkbox > label > .mat-checkbox-inner-container {
+  margin-left: unset;
+  margin-right: unset;
+}
+
+/* Custom breadcrumb para o menu Tabelas */
+.custom-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  display: none;
+}
+
+.custom-breadcrumb-hover:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+/* Fim Custom breadcrumb para o menu Tabelas */
+
+/* estilo relacionado quando a primeira tab esta bloqueada */
+
+.color-gray-tab-0 {
+  color: rgba(0, 0, 0, 0.38);
+  opacity: 0.5;
+}
+
+.opacity-6 {
+  opacity: 0.6;
+}
+
+/* Fim estilo relacionado quando a primeira tab esta bloqueada */
+
+/* Estilos relacionados com os ícones coloridos de Itens */
+.custom-icon-item {
+  color: black !important;
+  padding: 5px;
+  border-radius: 7px;
+  text-align: center;
+  align-self: center;
+  font-size: 1.1em;
+}
+
+.custom-icon-produto {
+  background: #52bae6;
+}
+
+.custom-icon-servico {
+  background: #61ff57;
+}
+
+.custom-icon-certificado {
+  background: #f9ff4e;
+}
+
+.custom-icon-vale {
+  background: #ff9a44;
+}
+
+.custom-icon-pack {
+  background: #c272ffeb;
+}
+
+.custom-icon-diverso {
+  background: #c4c4c4;
+}
+/* Fim dos Estilos relacionados com os ícones coloridos de Itens */
+
+.isDev {
+  border-style: solid;
+  border-color: red;
+}

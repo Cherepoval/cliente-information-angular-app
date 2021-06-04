@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>gicnet online</title>
+  <base href="/" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="stylesheet" href="assets/icons/css/all.min.css">
+  <link rel="stylesheet" href="assets/animate.min.css">
+  <style>
+    body {
+      background-color: #3193ca;
+    }
+
+    #loader {
+      /* Uncomment this to make it run! */
+      /*
+     animation: loader 5s linear infinite;
+  */
+
+      position: absolute;
+      top: calc(50% - 20px);
+      left: calc(50% - 20px);
+    }
+
+    @keyframes loader {
+      0% {
+        left: -100px
+      }
+
+      100% {
+        left: 110%;
+      }
+    }
+
+    #box {
+      width: 50px;
+      height: 50px;
+      background: #fff;
+      animation: animate .5s linear infinite;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 3px;
+    }
+
+    @keyframes animate {
+      17% {
+        border-bottom-right-radius: 3px;
+      }
+
+      25% {
+        transform: translateY(9px) rotate(22.5deg);
+      }
+
+      50% {
+        transform: translateY(18px) scale(1, .9) rotate(45deg);
+        border-bottom-right-radius: 40px;
+      }
+
+      75% {
+        transform: translateY(9px) rotate(67.5deg);
+      }
+
+      100% {
+        transform: translateY(0) rotate(90deg);
+      }
+    }
+
+    #shadow {
+      width: 50px;
+      height: 5px;
+      background: #000;
+      opacity: 0.1;
+      position: absolute;
+      top: 59px;
+      left: 0;
+      border-radius: 50%;
+      animation: shadow .5s linear infinite;
+    }
+
+    @keyframes shadow {
+      50% {
+        transform: scale(1.2, 1);
+      }
+    }
+
+    h4 {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      margin: 0;
+      font-weight: 200;
+      opacity: .5;
+      font-family: sans-serif;
+      color: #fff;
+    }
+
+    #logotipo {
+      width: 21rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- gicnet online:  20/04/2021, version: 0.22.0 -->
+  <app-root>
+
+    <img id="logotipo" class="mx-auto d-block my-5 pt-5" src="assets/logoinventore-white.svg" alt="Inventore: Oficina de
+    software" title="Inventore: Oficina Software" />
+
+    <div class="d-block mt-5 mx-auto" id="loader">
+      <div id="shadow"></div>
+      <div id="box"></div>
+    </div>
+
+  </app-root>
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<fieldset [disabled]="espera()">
+  <ng-container [formGroup]="formulario">
+
+    <div class="row">
+      <mat-form-field class="col-12">
+        <input matInput formControlName="nome" autocomplete="off" placeholder="{{ 'Nome' | translate }} *" />
+        <button type="button" *ngIf="formulario.get('nome').value" mat-button matSuffix mat-icon-button
+          aria-label="Clear" (click)="onLimparInput('nome')">
+          <i class="fas fa-backspace"></i>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="col-12">
+        <input matInput formControlName="morada" placeholder="{{ 'Morada'| translate }} *" autocomplete="off" />
+        <button type="button" *ngIf="formulario.get('morada').value" mat-button matSuffix mat-icon-button
+          aria-label="Clear" (click)="onLimparInput('morada')">
+          <i class="fas fa-backspace"></i>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="col-sm">
+        <input matInput [matDatepicker]="picker" autocomplete="off" placeholder="{{ 'DataNascimento' | translate }} *"
+          formControlName="dataNascimento" readonly class="cursor-pointer" (click)="picker.open()" />
+        <button type="button" *ngIf="formulario.get('dataNascimento').value" mat-button matSuffix mat-icon-button
+          aria-label="Clear" (click)="onLimparInput('dataNascimento')">
+          <i class="fas fa-backspace"></i>
+        </button>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi="true" #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="col-sm">
+        <mat-select formControlName="genero" placeholder="{{ 'Genero' | translate }} *">
+          <mat-option [value]="0">{{ 'Masculino' | translate }}</mat-option>
+          <mat-option [value]="1">{{ 'Feminino' | translate }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </ng-container>
+</fieldset>
+
+

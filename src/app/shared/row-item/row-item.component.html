@@ -1,0 +1,6 @@
+<div class="row">
+  <span class="custom-lable col-12" [class.text-center]="alignCentered" *ngIf="labelValue">{{labelValue}}</span>
+  <span *ngIf="itemValue" class="col-12" [class.nobreak]="nobreak"
+    [class.text-center]="alignCentered">{{itemValue}}</span>
+  <span *ngIf="htmlValue" [innerHTML]="htmlValue" class="col-12" [class.text-center]="alignCentered"></span>
+</div>

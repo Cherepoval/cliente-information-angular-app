@@ -1,0 +1,21 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/spec",
+    //"baseUrl": "./",                 //Testes só detetam os imports corretamente se o baseUrl for omitido
+    "types": [
+      "jasmine",
+      "node"
+    ]
+  },
+  "files": [
+    "test.ts",
+    "polyfills.ts"
+  ],
+  "include": [
+    "**/*.spec.ts",
+    "**/*.d.ts",
+    "../tests/**/*.spec.ts",
+    "../tests/**/*.d.ts"
+  ]
+}

@@ -1,0 +1,46 @@
+<div class="d-lg-none d-flex flex-column mx-1 mt-4">
+  <mat-form-field class="flex-grow-1 mx-2">
+    <mat-select placeholder="{{ 'Dados' | translate }}" [(value)]="currentMenuVertical">
+      <ng-container *ngFor="let item of menuVertical">
+        <mat-option [value]="item">{{item | translate}}</mat-option>
+      </ng-container>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="row mx-0 ml-lg-4">
+  <div class="d-none d-lg-block col-2 list-group border-right px-2 my-4 ">
+    <ng-container *ngFor="let menu of menuVertical">
+      <div class=" list-group-item list-group-item-action click-pointer" [class.active]="menu === currentMenuVertical"
+        [class.text-white]="menu === currentMenuVertical" (click)="onSelectMenuVertical(menu)">
+        {{ menu | translate }}
+      </div>
+    </ng-container>
+  </div>
+
+  <form class="col mx-0 my-4 mx-lg-4" [formGroup]="formulario" autocomplete="off">
+
+    <app-ficha-cliente-gerais [hidden]="currentMenuVertical !== 'Gerais'" [idCliente]="idCliente"
+      [formulario]="formulario.get('gerais')">
+    </app-ficha-cliente-gerais>
+
+    <!-- TODO: Exercício 2 -->
+
+    <div class="mt-3 mt-sm-5 text-center col justify-content-center">
+      <fieldset [disabled]="espera()">
+        <button type=" button" class="m-2 col-* font-size-16" mat-flat-button color="primary" (click)="onGravar()"
+          [disabled]="botaoGravarDisabled()">
+          {{ 'Gravar' | translate }}
+        </button>
+        <button type="button" class="m-2 col-* font-size-16" mat-flat-button color="warn" (click)="onApagar()"
+          *ngIf="idCliente !== 0">
+          {{ 'Apagar' | translate }}
+        </button>
+        <button type="button" class="m-2 col-* font-size-16" mat-stroked-button color="primary" (click)="onVoltar()"
+          *ngIf="idCliente === 0">
+          {{ 'Cancelar' | translate }}
+        </button>
+      </fieldset>
+    </div>
+  </form>
+</div>

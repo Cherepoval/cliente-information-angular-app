@@ -1,0 +1,49 @@
+<div class="container my-3 px-2">
+  <div class="rounded bg-white" [class.py-3]="!mobileQuery.matches">
+    <app-cabecalho *ngIf="mobileQuery.matches" [titulo]="['Clientes']" [subTitulo]="''" [backButton]="false">
+    </app-cabecalho>
+    <div class="justify-content-center row mx-0 py-2">
+      <div class="col-sm col-md-5">
+        <form>
+          <mat-form-field class="col mb-3 mb-md-2">
+            <input matInput placeholder="{{ 'Pesquisa' | translate }}" name="pesquisaClientes" [(ngModel)]="filtro"
+              (keyup.enter)="onPesquisaClientes()">
+            <mat-hint>Nome do cliente</mat-hint>
+            <button *ngIf="filtro" type="button" mat-button matSuffix mat-icon-button aria-label="Clear"
+              (click)="filtro= ''">
+              <i class="fas fa-backspace"></i>
+            </button>
+            <button type="button" mat-button matSuffix mat-icon-button aria-label="Clear"
+              (click)="onPesquisaClientes()">
+              <i class="fas fa-search"></i>
+            </button>
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-sm col-md-1 text-right text-md-center my-auto">
+        <button mat-mini-fab color="primary" class="font-size-16" (click)="onCriarCliente()">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+    </div>
+    <ng-container *ngIf="tamanho === 0">
+      <app-sem-registos></app-sem-registos>
+    </ng-container>
+
+    <!-- Lista de Clientes -->
+    <ng-container *ngFor="let cliente of clientes">
+      <div class="col-11 mx-auto row hover px-0 py-2" (click)="onCliente(cliente)">
+        <div class="col-2">
+          <app-row-item labelValue="{{ 'Codigo' | translate }}" itemValue="{{ cliente.idCliente }}"></app-row-item>
+        </div>
+        <!-- TODO: Exercício 1 -->
+      </div>
+      <div class="mx-auto" style="border-bottom: 1px #dfdede solid; width: 91.5%;"> </div>
+    </ng-container>
+
+    <!-- Paginador Lista de Clientes -->
+    <mat-paginator *ngIf="tamanho>5" class="mt-2 pr-0 pr-md-3" [length]="tamanho" [pageSize]="registosPagina"
+      [(pageIndex)]="index" [pageSizeOptions]="opcoesTamanhoPag" (page)="onPaginador($event)">
+    </mat-paginator>
+  </div>
+</div>

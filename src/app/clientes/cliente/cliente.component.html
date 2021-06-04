@@ -1,0 +1,17 @@
+<div class="container my-3 px-2">
+  <app-cabecalho [titulo]="['Cliente']"
+    [subTitulo]="idCliente === 0 ? 'NovoCliente' : idCliente + ' | ' + nomeCliente"></app-cabecalho>
+  <mat-tab-group [(selectedIndex)]="indiceMatTab" class="bg-white rounded-bottom custom-min-height" #tabs>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <i class=" icon-size fas fa-user"></i>
+        <span class="ml-1">{{ 'Dados' | translate }}</span>
+      </ng-template>
+      <ng-container>
+        <app-ficha-cliente [idCliente]="idCliente" (gravarFichaCliente)="onAtualizarCabecalho($event)">
+        </app-ficha-cliente>
+      </ng-container>
+    </mat-tab>
+  </mat-tab-group>
+</div>
