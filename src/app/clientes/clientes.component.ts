@@ -38,7 +38,9 @@ export class ClientesComponent implements OnInit, OnDestroy {
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   ngOnDestroy() {
     this.subscriptions.forEach((element) => element.unsubscribe());
@@ -47,6 +49,8 @@ export class ClientesComponent implements OnInit, OnDestroy {
 
   refrescar() {
     // TODO: Exercício 1
+    this.clientes = this.getClientesService.getClientes(this.filtro, this.index, this.registosPagina);
+    this.tamanho = this.getClientesService.getResultsLength();
   }
 
   onPaginador(event) {

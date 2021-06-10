@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 
 import { ClienteDadosGerais } from '../../_interfaces/clientes/cliente-dados-gerais.interface';
 import { ClienteDadosContactos } from '../../_interfaces/clientes/cliente-dados-contactos.interface';
+import { removeSummaryDuplicates } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GetClientesService {
-  constructor() {}
+  constructor() { }
 
   clientesDadosGerais: ClienteDadosGerais[] = [
     {
@@ -1217,6 +1218,27 @@ export class GetClientesService {
 
   getClientes(filtro: string, numPagina: number, numResultados: number) {
     // TODO: Exercício 1
+    const results: ClienteDadosGerais[] = [];
+    for (const cliente of this.clientesDadosGerais) {
+      if (cliente.nome.toLowerCase().indexOf(filtro.toLowerCase()) !== -1) {
+        results.push(cliente);
+      }
+      this.resultsLength = results.length;
+    }
+    let startIndex = numPagina * numResultados;
+    let endIndex = startIndex + numResultados;
+    if (endIndex >= results.length) {
+      endIndex = results.length;
+    }
+    const pageSlice = results.slice(startIndex, endIndex);
+
+    return pageSlice;
+  }
+
+  private resultsLength: number;
+
+  getResultsLength(): number {
+    return this.resultsLength;
   }
 
   getClientesTotal(): number {
