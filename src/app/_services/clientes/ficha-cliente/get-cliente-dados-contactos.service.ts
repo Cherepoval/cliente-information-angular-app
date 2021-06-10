@@ -8,9 +8,10 @@ import { ClienteDadosContactos } from '../../../_interfaces/clientes/cliente-dad
   providedIn: 'root',
 })
 export class GetClienteDadosContactosService {
-  constructor(private getClienteService: GetClientesService) {}
+  constructor(private getClienteService: GetClientesService) { }
 
-  getClienteDadosContactos(idCliente: number) {
+  getClienteDadosContactos(idCliente: number): ClienteDadosContactos {
     // TODO: Exercício 2
+    return this.getClienteService.clientesDadosContactos.find((x) => x.idCliente === idCliente);
   }
 }

@@ -25,6 +25,9 @@
     </app-ficha-cliente-gerais>
 
     <!-- TODO: Exercício 2 -->
+    <app-ficha-cliente-contactos [hidden]="currentMenuVertical !== 'Contactos'" [idCliente]="idCliente"
+      [formulario]="formulario.get('contactos')">
+    </app-ficha-cliente-contactos>
 
     <div class="mt-3 mt-sm-5 text-center col justify-content-center">
       <fieldset [disabled]="espera()">

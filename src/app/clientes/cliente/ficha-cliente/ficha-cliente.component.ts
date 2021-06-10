@@ -36,13 +36,14 @@ export class FichaClienteComponent implements OnInit, OnDestroy {
 
   formulario: FormGroup;
   formularioGerais: FormGroup;
+  formularioContactos: FormGroup;
 
   traducaoClienteAdicionado: string;
   traducaoDadosGravados: string;
   traducaoEliminacao: string;
 
   // TODO: Exercício 2
-  menuVertical = ['Gerais'];
+  menuVertical = ['Gerais', 'Contactos'];
   currentMenuVertical = 'Gerais';
 
   constructor(
@@ -82,8 +83,14 @@ export class FichaClienteComponent implements OnInit, OnDestroy {
       genero: [0, Validators.required],
     });
 
+    this.formularioContactos = this.formBuilder.group({
+      telemovel: ['', [Validators.required, Validators.maxLength(9), Validators.pattern(this.funcoesService.regTelemovel)]],
+      email: ['', [Validators.required, Validators.pattern(this.funcoesService.regEmail)]]
+    });
+
     this.formulario = this.formBuilder.group({
       gerais: this.formularioGerais,
+      contactos: this.formularioContactos
     });
   }
 

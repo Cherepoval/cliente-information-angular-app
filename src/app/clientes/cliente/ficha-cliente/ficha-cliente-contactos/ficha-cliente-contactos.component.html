@@ -3,6 +3,21 @@
 
     <div class="row">
       <!-- TODO: Exercício 2 -->
+      <mat-form-field class="col-sm">
+        <input matInput formControlName="telemovel" placeholder="{{ 'Telemovel'| translate }} *" autocomplete="off" />
+        <button type="button" *ngIf="formulario.get('telemovel').value" mat-button matSuffix mat-icon-button
+          aria-label="Clear" (click)="onLimparInput('telemovel')">
+          <i class="fas fa-backspace"></i>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field class="col-sm">
+        <input matInput formControlName="email" placeholder="{{ 'E-mail'| translate }} *" autocomplete="off" />
+        <button type="button" *ngIf="formulario.get('email').value" mat-button matSuffix mat-icon-button
+          aria-label="Clear" (click)="onLimparInput('email')">
+          <i class="fas fa-backspace"></i>
+        </button>
+      </mat-form-field>
     </div>
 
   </ng-container>

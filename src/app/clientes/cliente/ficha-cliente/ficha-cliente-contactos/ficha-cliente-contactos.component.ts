@@ -16,11 +16,13 @@ export class FichaClienteContactosComponent implements OnInit, OnDestroy {
   @Input() idCliente: number;
   @Input() formulario: FormGroup;
 
-  constructor(private getClienteDadosContactosService: GetClienteDadosContactosService) {}
+  constructor(private getClienteDadosContactosService: GetClienteDadosContactosService) { }
 
   ngOnInit() {
     if (this.idCliente) {
-      this.refrescarFormulario();
+      this.refrescarFormulario(
+        this.getClienteDadosContactosService.getClienteDadosContactos(this.idCliente)
+      );
     }
   }
 
@@ -28,8 +30,12 @@ export class FichaClienteContactosComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((el) => el.unsubscribe());
   }
 
-  refrescarFormulario() {
+  refrescarFormulario(dadosContactos: ClienteDadosContactos) {
     // TODO: Exercício 2
+    this.formulario.patchValue({
+      telemovel: dadosContactos.telemovel,
+      email: dadosContactos.email
+    })
   }
 
   onLimparInput(val: string, event) {
