@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import { SubscriptionLike } from 'rxjs';
 
 import { GetClientesService } from '../_services/clientes/get-clientes.service';
-
 import { ClienteDadosGerais } from '../_interfaces/clientes/cliente-dados-gerais.interface';
+import { ClienteDadosContactos } from '../_interfaces/clientes/cliente-dados-contactos.interface';
+import { GetClienteDadosContactosService } from '../_services/clientes/ficha-cliente/get-cliente-dados-contactos.service';
 
 @Component({
   selector: 'app-clientes',
@@ -17,7 +18,9 @@ export class ClientesComponent implements OnInit, OnDestroy {
   private _mobileQueryListener: () => void;
   mobileQuery: MediaQueryList;
 
-  clientes: ClienteDadosGerais[];
+  clientesDadosGerais: ClienteDadosGerais[];
+  clientesDadosGeraisComContactos;
+  clienteContactos: ClienteDadosContactos;
 
   tamanho = -1;
   index = 0;
@@ -31,16 +34,15 @@ export class ClientesComponent implements OnInit, OnDestroy {
     private router: Router,
     public mediaMatcher: MediaMatcher,
     public changeDetectorRef: ChangeDetectorRef,
-    private getClientesService: GetClientesService
+    private getClientesService: GetClientesService,
+    private getClientesDadosContactosService: GetClienteDadosContactosService
   ) {
     this.mobileQuery = mediaMatcher.matchMedia('(max-width: 991px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   ngOnDestroy() {
     this.subscriptions.forEach((element) => element.unsubscribe());
@@ -49,8 +51,15 @@ export class ClientesComponent implements OnInit, OnDestroy {
 
   refrescar() {
     // TODO: Exercício 1
-    this.clientes = this.getClientesService.getClientes(this.filtro, this.index, this.registosPagina);
+    this.clientesDadosGerais = this.getClientesService.getClientes(this.filtro, this.index, this.registosPagina);
     this.tamanho = this.getClientesService.getResultsLength();
+
+    this.clientesDadosGeraisComContactos = [];
+    this.clientesDadosGerais.forEach(clienteGerais => {
+      this.clienteContactos = this.getClientesDadosContactosService.getClienteDadosContactos(clienteGerais.idCliente);
+      Object.assign(this.clienteContactos, clienteGerais);
+      this.clientesDadosGeraisComContactos.push(this.clienteContactos);
+    });
   }
 
   onPaginador(event) {

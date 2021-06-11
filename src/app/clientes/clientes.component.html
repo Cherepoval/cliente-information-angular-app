@@ -31,25 +31,25 @@
     </ng-container>
 
     <!-- Lista de Clientes -->
-    <ng-container *ngFor="let cliente of clientes">
+    <ng-container *ngFor="let cliente of clientesDadosGeraisComContactos ">
       <div class="col-11 mx-auto row hover px-0 py-2" style="justify-content: space-between"
         (click)="onCliente(cliente)">
-        <div class="col-2" style="text-align: left;">
+        <div class="col-1" style="text-align: left;">
           <app-row-item labelValue="{{ 'Codigo' | translate }}" itemValue="{{ cliente.idCliente }}"></app-row-item>
         </div>
         <!-- TODO: Exercício 1 -->
         <div class='col-3'>
           <app-row-item labelValue="{{'Nome' | translate }}" itemValue="{{ cliente.nome }}"></app-row-item>
-
         </div>
-        <div class='col-3'>
-          <app-row-item labelValue="{{'Morada' | translate }}" itemValue="{{ cliente.morada }}"></app-row-item>
 
+        <div class='col-4'>
+          <app-row-item labelValue="{{'E-mail' | translate }}" itemValue="{{ cliente.email }}">
+          </app-row-item>
         </div>
-        <div class='col-2' style="position: absolute-right; text-align: right">
+
+        <div class='col-3' style="position: absolute-right; text-align: right">
           <app-row-item labelValue="{{'DataNascimento' | translate }}" itemValue="{{ cliente.dataNascimento }}">
           </app-row-item>
-
         </div>
       </div>
       <div class="mx-auto" style="border-bottom: 1px #dfdede solid; width: 91.5%;"> </div>
