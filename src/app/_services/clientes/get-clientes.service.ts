@@ -1216,6 +1216,8 @@ export class GetClientesService {
     },
   ];
 
+  private resultsLength: number;
+
   getClientes(filtro: string, numPagina: number, numResultados: number) {
     // TODO: Exercício 1
     const results: ClienteDadosGerais[] = [];
@@ -1235,7 +1237,37 @@ export class GetClientesService {
     return pageSlice;
   }
 
-  private resultsLength: number;
+  updateClienteDadosGerais(dadosGeraisParaGravar: ClienteDadosGerais, idCliente: number) {
+    let index = this.clientesDadosGerais.findIndex(
+      (x) => x.idCliente === idCliente);
+    this.clientesDadosGerais[index] = dadosGeraisParaGravar;
+  }
+
+  updateClienteDadosContactos(dadosContactosParaGravar: ClienteDadosContactos, idCliente: number) {
+    let index = this.clientesDadosContactos.findIndex(
+      (x) => x.idCliente === idCliente);
+    this.clientesDadosContactos[index] = dadosContactosParaGravar;
+  }
+
+  addNewClienteDadosGerais(dadosGeraisParaGravar: ClienteDadosGerais) {
+    this.clientesDadosGerais.push(dadosGeraisParaGravar);
+  }
+
+  addNewClienteDadosContactos(dadosContactosParaGravar: ClienteDadosContactos) {
+    this.clientesDadosContactos.push(dadosContactosParaGravar);
+  }
+
+  deleteClienteDadosGerais(idCliente: number) {
+    let index = this.clientesDadosGerais.findIndex(
+      (x) => x.idCliente === idCliente);
+    this.clientesDadosGerais.splice(index, 1);
+
+  }
+  deleteClienteDadosContactos(idCliente: number) {
+    let index = this.clientesDadosContactos.findIndex(
+      (x) => x.idCliente === idCliente);
+    this.clientesDadosContactos.splice(index, 1);
+  }
 
   getResultsLength(): number {
     return this.resultsLength;
@@ -1243,5 +1275,10 @@ export class GetClientesService {
 
   getClientesTotal(): number {
     return this.tamanhoClientes;
+  }
+
+  getIdDoUltimoCliente(): number {
+    let ultimoCliente = this.clientesDadosGerais[this.tamanhoClientes - 1];
+    return ultimoCliente.idCliente;
   }
 }

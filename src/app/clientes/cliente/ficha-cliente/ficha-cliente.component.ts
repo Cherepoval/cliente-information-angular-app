@@ -8,7 +8,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, NgForm } from '@angular/forms';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Location } from '@angular/common';
 import { SubscriptionLike, forkJoin } from 'rxjs';
@@ -19,9 +19,12 @@ import { ConfirmacaoDialogComponent } from '../../../shared/confirmacao-dialog/c
 import { Tradutor } from '../../../_services/tradutor.service';
 import { FuncoesService } from '../../../shared/funcoes.service';
 import { SetClienteDadosGeraisService } from '../../../_services/clientes/ficha-cliente/set-cliente-dados-gerais.service';
+import { SetClienteDadosContactosService } from 'src/app/_services/clientes/ficha-cliente/set-cliente-dados-contactos.service';
 import { DeleteClienteService } from '../../../_services/clientes/ficha-cliente/delete-cliente.service';
 
 import { ClienteDadosGerais } from '../../../_interfaces/clientes/cliente-dados-gerais.interface';
+import { GetClienteDadosGeraisService } from 'src/app/_services/clientes/ficha-cliente/get-cliente-dados-gerais.service';
+import { ClienteDadosContactos } from 'src/app/_interfaces/clientes/cliente-dados-contactos.interface';
 
 @Component({
   selector: 'app-ficha-cliente',
@@ -42,6 +45,9 @@ export class FichaClienteComponent implements OnInit, OnDestroy {
   traducaoDadosGravados: string;
   traducaoEliminacao: string;
 
+  clienteParaGravarDadosGerais: ClienteDadosGerais;
+  clienteParaGravarDadosContactos: ClienteDadosContactos;
+
   // TODO: Exercício 2
   menuVertical = ['Gerais', 'Contactos'];
   currentMenuVertical = 'Gerais';
@@ -55,6 +61,7 @@ export class FichaClienteComponent implements OnInit, OnDestroy {
     private tradutor: Tradutor,
     private funcoesService: FuncoesService,
     private setClienteDadosGeraisService: SetClienteDadosGeraisService,
+    private setClienteDadosContactosService: SetClienteDadosContactosService,
     private deleteClienteService: DeleteClienteService
   ) {
     this.mobileQuery = mediaMatcher.matchMedia('(max-width: 991px)');
@@ -104,18 +111,39 @@ export class FichaClienteComponent implements OnInit, OnDestroy {
 
   onGravar() {
     // TODO: Exercício 3.1 e 4.1
+    let nome = this.formularioGerais.get('nome').value;
+    let morada = this.formularioGerais.get('morada').value;
+    let momentValue = moment(this.formularioGerais.get('dataNascimento').value);
+    let dataNascimento = momentValue.format('YYYY/MM/DD');
+
+    let genero = this.formularioGerais.get('genero').value;
+    this.clienteParaGravarDadosGerais = { idCliente: this.idCliente, nome: nome, morada: morada, dataNascimento: dataNascimento, genero: genero };
+
+    let telemovel = this.formularioContactos.get('telemovel').value;
+    let email = this.formularioContactos.get('email').value;
+    this.clienteParaGravarDadosContactos = { idCliente: this.idCliente, telemovel: telemovel, email: email };
+
+    this.setClienteDadosGeraisService.setClienteDadosGerais(this.clienteParaGravarDadosGerais, this.idCliente);
+    this.setClienteDadosContactosService.setClienteDadosContactos(this.clienteParaGravarDadosContactos, this.idCliente);
+
+    console.log(this.clienteParaGravarDadosGerais);
+    console.log(this.clienteParaGravarDadosContactos);
+
   }
 
   onApagar() {
     // TODO: Exercício 3.2
+    this.deleteClienteService.deleteCliente(this.idCliente);
   }
 
   // Só ativa o botão se nenhum dos formulários for inválido e se algum dos formulários for modificado
   botaoGravarDisabled(): boolean {
     // TODO: Exercício 2
     return (
-      this.formulario.get('gerais').invalid ||
-      (this.formulario.get('gerais').pristine)
+      (this.formulario.get('gerais').invalid ||
+        this.formulario.get('gerais').pristine) &&
+      (this.formulario.get('contactos').invalid ||
+        this.formulario.get('contactos').pristine)
     );
   }
 

@@ -16,7 +16,7 @@ export class FichaClienteGeraisComponent implements OnInit, OnDestroy {
   @Input() idCliente: number;
   @Input() formulario: FormGroup;
 
-  constructor(private getClienteDadosGeraisService: GetClienteDadosGeraisService) {}
+  constructor(private getClienteDadosGeraisService: GetClienteDadosGeraisService) { }
 
   ngOnInit() {
     if (this.idCliente) {
