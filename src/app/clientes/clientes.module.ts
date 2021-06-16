@@ -20,4 +20,4 @@ import { FichaClienteContactosComponent } from './cliente/ficha-cliente/ficha-cl
     FichaClienteContactosComponent
   ],
 })
-export class ClientesModule {}
+export class ClientesModule { }

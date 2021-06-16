@@ -14,7 +14,6 @@ export class SetClienteDadosGeraisService {
   setClienteDadosGerais(dadosGeraisParaGravar: ClienteDadosGerais, idCliente: number) {
     // TODO: Exercício 3.1 e 4.1
 
-
     if (idCliente !== 0) {
       this.getClienteService.updateClienteDadosGerais(dadosGeraisParaGravar, idCliente);
     } else {
@@ -24,9 +23,6 @@ export class SetClienteDadosGeraisService {
       dadosGeraisParaGravar.idCliente = ++idDoUltimoCliente;
 
       this.getClienteService.addNewClienteDadosGerais(dadosGeraisParaGravar);
-
-
-      console.log(dadosGeraisParaGravar);
     }
 
   }

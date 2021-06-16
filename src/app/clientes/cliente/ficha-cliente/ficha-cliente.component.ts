@@ -129,11 +129,20 @@ export class FichaClienteComponent implements OnInit, OnDestroy {
     console.log(this.clienteParaGravarDadosGerais);
     console.log(this.clienteParaGravarDadosContactos);
 
+    this.onVoltar();
+
   }
 
   onApagar() {
     // TODO: Exercício 3.2
     this.deleteClienteService.deleteCliente(this.idCliente);
+
+    this.onVoltar();
+  }
+
+  onOpenModal() {
+    let modalButton = document.getElementById('modal-button');
+    modalButton.click();
   }
 
   // Só ativa o botão se nenhum dos formulários for inválido e se algum dos formulários for modificado

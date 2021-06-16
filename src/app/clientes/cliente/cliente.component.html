@@ -1,6 +1,6 @@
 <div class="container my-3 px-2">
-  <app-cabecalho [titulo]="['Cliente']"
-    [subTitulo]="idCliente === 0 ? 'NovoCliente' : idCliente + ' | ' + nomeCliente"></app-cabecalho>
+  <app-cabecalho [titulo]="['Cliente']" [subTitulo]="idCliente === 0 ? 'NovoCliente' : idCliente + ' | ' + nomeCliente">
+  </app-cabecalho>
   <mat-tab-group [(selectedIndex)]="indiceMatTab" class="bg-white rounded-bottom custom-min-height" #tabs>
 
     <mat-tab>
